@@ -85,15 +85,17 @@ bool board::get_file(std::ifstream& coordinates,bool *b1,int height,int width)
 }
 void board::show(const bool* b1,int height,int width)
 {
+    char dash=static_cast<char>(22),square=static_cast<char>(254);
+    //for more professional work.
   for(int i=0;i<height;i++)
     {
     for(int j=0;j<width;j++)//bound the row from up
-        std::cout<<" -";
+        std::cout<<" "<<dash;
     std::cout<<std::endl;
 
     for(int j=0;j<width;j++)//bound the cell from left
         if(b1[i*width+j]==ALIVE)
-            std::cout<<"|*";
+            std::cout<<"|"<<square;
         else
             std::cout<<"| ";
 
@@ -101,7 +103,7 @@ void board::show(const bool* b1,int height,int width)
     //bound the last cell from right and move to a new row
     }
     for(int j=0;j<width;j++)//bound the last row from down and move to a new line
-        std::cout<<" -";
+        std::cout<<" "<<dash;
     std::cout<<std::endl;
 }
 int board::count_neighbors(const bool* b1,int row,int col,int height,int width)
