@@ -6,8 +6,8 @@
   for future:know how to get the height and width of the window
   or better know how to use buffers in opengl and print stuff in them
   */
-#define HEIGHT 11
-#define WIDTH 39
+#define HEIGHT 12
+#define WIDTH 52
 enum State{DEAD,ALIVE};//0 and 1 is converted to false and true
 namespace board
 {
@@ -30,7 +30,7 @@ int main()
 {
     bool *mainboard= new bool[HEIGHT*WIDTH],*secboard=new bool[HEIGHT*WIDTH],
     *haltboard=new bool[HEIGHT*WIDTH];
-    std::ifstream coordination("glider.txt");
+    std::ifstream coordination("lwss.txt");
     int iterations=100,i=0;
     if(!board::get_file(coordination,mainboard))//something is wrong
     {
@@ -85,7 +85,7 @@ bool board::get_file(std::ifstream& coordinates,bool *b1,int height,int width)
 }
 void board::show(const bool* b1,int height,int width)
 {
-    char dash=static_cast<char>(22),square=static_cast<char>(254);
+    unsigned char dash=static_cast<char>(22),square=static_cast<char>(254);
     //for more professional work.
   for(int i=0;i<height;i++)
     {
