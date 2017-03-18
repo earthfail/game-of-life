@@ -8,8 +8,8 @@
   for future:know how to get the height and width of the window
   or better know how to use buffers in opengl and print stuff in them
   */
-#define HEIGHT 38
-#define WIDTH 100
+#define HEIGHT 10
+#define WIDTH 20
 // cmd can print square but it is not supported on my ubuntu computer
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
 #define DASH static_cast<char>(22)
@@ -34,7 +34,8 @@ void update(const bool* b1,bool* b2,int height=HEIGHT,int width=WIDTH);
 void copy(bool* dist,const bool* source,int height=HEIGHT,int width=WIDTH);
 //copy values of b2 to b1
 bool compare(const bool* b1,const bool* b3,int height=HEIGHT,int width=WIDTH);
-//compare two buffers *NOTE*: b3 because not to be confused with b2 that help in updating
+//compare two boards *NOTE*: b3 because not to be confused with b2 that help in updating
+//return true if the two board are the same
 }
 
 // ---------MAIN---------
@@ -77,6 +78,9 @@ int main()
           }
         while(i<iterations)//show the board and update it
           {
+            system(CLEAR);//clear the console *NOT RECOMMENDED
+
+            std::cout<<i+1<<std::endl;
             board::show(mainboard);
             board::copy(haltboard,mainboard);//saving the old board
 
@@ -87,7 +91,7 @@ int main()
               break;
             choice=static_cast<char>(getchar());//to delay the results
             if(choice=='e') {choice='-'; break;}//the player wants a new game
-            //system(CLEAR);//clear the console *NOT RECOMMENDED
+
             i++;
           }
         std::cout<<"iterations:"<<i<<std::endl;
@@ -194,7 +198,7 @@ bool board::compare(const bool* b1,const bool* b3,int height,int width)
 {
   for(int i=0;i<height;i++)
         for(int j=0;j<width;j++)
-            if(b1[i*width+j]!=b3[i*width+j])//bound difference
+            if(b1[i*width+j]!=b3[i*width+j])//found difference
                 return false;
   return true;//didn't find any difference
 }
